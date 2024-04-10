@@ -5,10 +5,6 @@ class AirplaneRepository extends CrudRepository{
     constructor() {
         super(Airplane);
     }
-    async createAirplane(data) {
-        const response = await Airplane.create(data);
-        return response;
-   }
      
 }
 
