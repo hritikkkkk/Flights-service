@@ -13,4 +13,6 @@ router.get("/", cityController.getCities);
 
 router.get("/:id", cityController.getCity);
 
+router.delete("/:id", cityController.destroyCity);
+
 module.exports = router;
