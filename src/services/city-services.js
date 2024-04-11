@@ -74,9 +74,38 @@ async function destroyCity(id) {
   }
 }
 
+async function updateCity(id, data) {
+  try {
+    const city = await cityRepository.update(id, data);
+    return city;
+  } catch (error) {
+    if (
+      error.name == "SequelizeValidationError" ||
+      "SequelizeUniqueConstraintError"
+    ) {
+      let explanation = [];
+      error.errors.forEach((err) => {
+        explanation.push(err.message);
+      });
+      throw new AppError(explanation, StatusCodes.BAD_REQUEST);
+    } else if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "city you requested to update is not present ",
+        error.statusCode
+      );
+    }
+
+    throw new AppError(
+      "can't update the city",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
+
 module.exports = {
   createCity,
   getCities,
   getCity,
   destroyCity,
+  updateCity,
 };
