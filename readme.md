@@ -15,8 +15,9 @@ ex:
 
     PORT=3000
 go inside the src folder and execute the following command:
-
-  npx sequelize init
+```
+ npx sequelize init
+  ```
 By executing the above command you will get migrations and seeders folder along with a config.json inside the config folder.
 
 If you're setting up your development environment, then write the username of your db, password of your db and in dialect mention whatever db you are using for ex: mysql, mariadb etc in the config.json file
@@ -24,11 +25,12 @@ If you're setting up your development environment, then write the username of yo
 If you're setting up test or prod environment, make sure you also replace the host with the hosted db url.
 
 To run the server execute
-
+```
 npm run dev
+```
 
 and if you have some nodmon install in your device execute:
-
+```
 nodmeon index.js
-
+```
 
