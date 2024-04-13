@@ -33,7 +33,7 @@ async function getAirplanes() {
       StatusCodes.INTERNAL_SERVER_ERROR
     );
   }
-}
+} 
 
 async function getAirplane(id) {
   try {

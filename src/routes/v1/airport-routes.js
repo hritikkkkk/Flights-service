@@ -10,4 +10,6 @@ router.post(
   AirportController.createAirport
 );
 
+router.get("/", AirportController.getAirports);
+router.get("/:id", AirportController.getAirport);
 module.exports = router;

@@ -18,6 +18,31 @@ const createAirport = async (req, res) => {
   }
 };
 
+async function getAirports(req, res) {
+  try {
+    const airports = await AirportService.getAirports();
+    SuccessResponse.data = airports;
+    return res.status(StatusCodes.OK).json(SuccessResponse);
+  } catch (error) {
+    ErrorResponse.error = error;
+    return res.status(error.statusCode).json(ErrorResponse);
+  }
+}
+
+
+async function getAirport(req, res) {
+    try {
+      const airport = await AirportService.getAirport(req.params.id);
+      SuccessResponse.data = airport;
+      return res.status(StatusCodes.OK).json(SuccessResponse);
+    } catch (error) {
+      ErrorResponse.error = error;
+      return res.status(error.statusCode).json(ErrorResponse);
+    }
+  }
+  
 module.exports = {
   createAirport,
+    getAirports,
+  getAirport
 };

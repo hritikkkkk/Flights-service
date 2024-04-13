@@ -27,8 +27,38 @@ async function createAirport(data) {
   }
 }
 
+async function getAirports() {
+  try {
+    const airports = await airportRepository.getAll();
+    return airports;
+  } catch (error) {
+    throw new AppError(
+      "Cannot get the data of all the airports",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
 
+async function getAirport(id) {
+  try {
+    const airports = await airportRepository.get(id);
+    return airports;
+  } catch (error) {
+    if (error.statusCode == StatusCodes.NOT_FOUND) {
+      throw new AppError(
+        "the airport you requested is not present",
+        error.statusCode
+      );
+    }
+    throw new AppError(
+      "Cannot fetch the data of  the airport",
+      StatusCodes.INTERNAL_SERVER_ERROR
+    );
+  }
+}
 
 module.exports = {
   createAirport,
+  getAirports,
+  getAirport,
 };
