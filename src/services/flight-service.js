@@ -12,7 +12,9 @@ const createFlight = async (data) => {
   } catch (error) {
     if (
       error.name == "SequelizeValidationError" ||
-      "SequelizeUniqueConstraintError"
+      "SequelizeUniqueConstraintError" ||
+      "SequelizeForeignKeyConstraintError" ||
+      "SequelizeDatabaseError"
     ) {
       let explanation = [];
       error.errors.forEach((err) => {
@@ -20,6 +22,7 @@ const createFlight = async (data) => {
       });
       throw new AppError(explanation, StatusCodes.BAD_REQUEST);
     }
+
     throw new AppError(
       "Cannot create a new flight object",
       StatusCodes.INTERNAL_SERVER_ERROR
