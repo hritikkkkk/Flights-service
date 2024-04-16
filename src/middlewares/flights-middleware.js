@@ -69,7 +69,7 @@ function validateCreateRequest(req, res, next) {
   ) {
     ErrorResponse.message = "Something went wrong while creating flight";
     ErrorResponse.error = new AppError(
-      ["arrival time mentioned is greater than departure "],
+      ["departure time mentioned is greater than arrival "],
       StatusCodes.BAD_REQUEST
     );
     return res.status(StatusCodes.BAD_REQUEST).json(ErrorResponse);
