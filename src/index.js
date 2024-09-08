@@ -1,4 +1,5 @@
 const express = require("express");
+const cors = require("cors");
 const app = express();
 const { serverConfig } = require("./config");
 
@@ -10,6 +11,7 @@ app.use(
     extended: true,
   })
 );
+app.use(cors());
 
 app.use("/api", apiRoutes);
 
